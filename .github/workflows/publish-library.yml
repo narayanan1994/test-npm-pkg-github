@@ -1,0 +1,54 @@
+name: "publish library to npm.pkg.github"
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-demo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.16.0
+          registry-url: https://npm.pkg.github.com/
+      - name: Install packages
+        run: npm install
+      - name: Build library project
+        run: npm run-script build-library
+      - name: Build demo project
+        run: npm run-script build-demo
+  publish-library:
+    needs: build-demo
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.16.0
+          registry-url: https://npm.pkg.github.com/
+      - name: Install packages
+        run: npm install
+      - name: Build library project
+        run: npm run-script build-library
+      - name: Setup .npmrc file
+        working-directory: dist/test-private-npm-pkg-lib
+        run: |
+          echo "@username:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_PAT_TOKEN }}" >> .npmrc
+      - name: publish
+        run: npm publish --access public
+        working-directory: dist/test-private-npm-pkg-lib
+        # env:
+        #     NODE_AUTH_TOKEN: ${{secrets.GIT_PAT_TOKEN}}
