@@ -1,7 +1,7 @@
 {
   "name": "@narayanan1994/test-npm-pkg-github",
   "description": "Angular private library publish testing",
-  "version": "0.0.1-beta",
+  "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0"

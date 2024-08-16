@@ -1,8 +1,8 @@
 # test-private-npm-pkg-lib
-To test library public angular library publishing to https://registry.npmjs.com/
+To test library private angular library publishing to https://npm.pkg.github.com
 
 # version
-0.0.1-beta
+0.0.2
 
 # test-private-npm-pkg-lib
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
