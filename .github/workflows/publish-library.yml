@@ -48,7 +48,5 @@ jobs:
           echo "@username:registry=https://npm.pkg.github.com" >> .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_PAT_TOKEN }}" >> .npmrc
       - name: publish
-        run: npm publish --access public
+        run: npm publish
         working-directory: dist/test-private-npm-pkg-lib
-        # env:
-        #     NODE_AUTH_TOKEN: ${{secrets.GIT_PAT_TOKEN}}
