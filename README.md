@@ -1,2 +1,2 @@
-# test-npm-pkg-github
-To test publishing private library to https://npm.pkg.github.com
+# test-private-npm-pkg-github
+To test publishing private angular library to https://npm.pkg.github.com
